@@ -50,7 +50,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'mvn clean install'
+                sh 'mvn clean install -DskipTests=true'
             }
         }
         stage('Package') {
@@ -69,7 +69,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'echo test'
+                sh 'java -jar ApplicationTest.jar'
             }
             post {
                 always {
