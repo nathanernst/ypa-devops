@@ -50,7 +50,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'mvn -B -DskipTests clean package'
+                sh 'mvn -B -DskipTests clean install'
             }
         }
         stage('Package') {
@@ -70,7 +70,7 @@ pipeline {
             }
             steps {
                 // @TODO: Run tests
-                sh 'echo test'
+                sh 'mvn test'
             }
             post {
                 always {
