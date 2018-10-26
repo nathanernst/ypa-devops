@@ -53,13 +53,6 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
-        stage('Package') {
-            steps {
-                script {
-                    DOCKER_IMAGE = docker.build DOCKER_IMAGE_FULL_NAME
-                }
-            }
-        }
         stage('Test') {
             agent {
                 docker {
@@ -74,6 +67,13 @@ pipeline {
             post {
                 always {
                     junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml'
+                }
+            }
+        }
+        stage('Package') {
+            steps {
+                script {
+                    DOCKER_IMAGE = docker.build DOCKER_IMAGE_FULL_NAME
                 }
             }
         }
