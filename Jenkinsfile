@@ -69,7 +69,7 @@ pipeline {
                 }
             }
             steps {
-                // @TODO: Run tests
+                sh 'echo test'
             }
             post {
                 always {
