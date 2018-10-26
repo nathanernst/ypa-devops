@@ -8,6 +8,12 @@ services:
     labels:
     - "traefik.frontend.rule=Host:tom.dev.tomoud.nl"
   nathan-dev:
+    image: moduo/devops:nathan-5
+    ports:
+    - 8080
+    labels:
+    - "traefik.frontend.rule=Host:nathan.dev.tomoud.nl"
+  brian-dev:
     image: moduo/devops:brian-4
     ports:
     - 8080
