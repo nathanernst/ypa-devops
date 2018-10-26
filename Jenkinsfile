@@ -51,7 +51,7 @@ pipeline {
             }
             steps {
                 // @TODO: Run your maven build
-                sh 'mvn clean install'
+                sh 'mvn clean install -DskipTests'
             }
         }
         stage('Package') {
