@@ -50,7 +50,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'mvn clean install -DskipTests'
+                sh 'mvn -B -DskipTests clean package'
             }
         }
         stage('Package') {
@@ -69,6 +69,7 @@ pipeline {
                 }
             }
             steps {
+                // @TODO: Run tests
                 sh 'mvn test'
             }
             post {
@@ -77,13 +78,19 @@ pipeline {
                 }
             }
         }
-        stage('Deploy') {
+        stage('Archive') {
             steps {
                 script {
                     docker.withRegistry('', REGISTRY_CREDENTIALS) {
                         DOCKER_IMAGE.push()
                     }
                 }
+            }
+        }
+        stage('Deploy') {
+            when { branch 'dev*' }
+            steps {
+                sh 'docker-compose up -d -f /apps/ypa-devops/docker-compose.yml'
             }
         }
     }
