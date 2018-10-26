@@ -70,7 +70,7 @@ pipeline {
             }
             steps {
                 // @TODO: Run tests
-                sh 'mvn test'
+                sh 'echo test'
             }
             post {
                 always {
