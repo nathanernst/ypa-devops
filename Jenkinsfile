@@ -50,7 +50,7 @@ pipeline {
                 }
             }
             steps {
-                // @TODO: Run your maven build
+                sh 'mvn clean install'
             }
         }
         stage('Package') {
@@ -69,7 +69,7 @@ pipeline {
                 }
             }
             steps {
-                // @TODO: Run tests
+                sh 'mvn test'
             }
             post {
                 always {
