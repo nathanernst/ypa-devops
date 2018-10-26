@@ -50,7 +50,7 @@ pipeline {
                 }
             }
             steps {
-                // @TODO: Run your maven build
+                sh 'mvn build'
             }
         }
         stage('Package') {
